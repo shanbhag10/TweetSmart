@@ -11,6 +11,7 @@ access_secret = 'tvxnYaWGgTaL1cwDF0QAGBKkeBvqYBSEgzbM9GwsUqkIX'
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
+count = 0
 
 
 def getInitialUserNames(screen_name,users):
@@ -27,28 +28,29 @@ def getInitialUserNames(screen_name,users):
 
 
 
-def getFinalUserNames(screen_name,users,count):
+def getFinalUserNames(screen_name,users):
+	global count
 	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
 		for status in page:
 			users.add(status.user.screen_name)
 			count += 1
-			if count % 50 == 0:
+			if count % 100 == 0:
 				print("Parsed ",count," usernames")
-				print("Added ",len(users)," usernames")
+				#print("Added ",len(users)," usernames")
+	
 			
 
 
 if __name__ == '__main__':
 	username = sys.argv[1]
 	users = {username}
-	count = 0
 	getInitialUserNames(username,users)
 	file = open("initial.txt", "r")
 	listOfUsernames = file.readlines()
 	print("Getting final usernames")
 	for usname in listOfUsernames:
 		if len(users) < 10000:
-			getFinalUserNames(usname,users,count)
+			getFinalUserNames(usname,users)
 		else:
 			break
 
