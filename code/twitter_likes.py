@@ -1,7 +1,7 @@
 import tweepy
-import csv
-import pandas as pd
-import heapq 
+#import csv
+#import pandas as pd
+#import heapq 
 
 # Twitter API credentials
 consumer_key = 'IFPYrIpyKNqt8qe7GbQvw8NzQ'
