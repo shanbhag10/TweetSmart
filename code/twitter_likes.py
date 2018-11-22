@@ -14,7 +14,7 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 
-elon = []
+likes = []
 d = {}
 d['name'] = {}
 d['tweet'] = {}
@@ -50,7 +50,7 @@ def getFavs(screen_name):
 
 	   #id,text,screen_name
 
-def moreLikes(screen_name):
+def LikesCountSorted(screen_name):
 	max = 0
 	name = ""
 	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
@@ -73,8 +73,15 @@ def moreLikes(screen_name):
 	print(sorted_by_value)
 
 
+def getLikes(screen_name):
+	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
+		for status in page:
+			likes.append((screen_name,status.user.screen_name))
+
+
 if __name__ == '__main__':
 	#get_all_tweets("nawalsanchit")
-	moreLikes("MattGlantz")
+	getLikes("MattGlantz")
+	print(likes)
 
 
