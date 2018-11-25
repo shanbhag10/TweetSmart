@@ -48,7 +48,9 @@ try:
     ssh.connect('ec2-18-218-205-96.us-east-2.compute.amazonaws.com',username='ubuntu',pkey=privkey)
     stdin, stdout, stderr = ssh.exec_command('cd TweetSmart/code && python3 twitter_likes.py')
     stdin.flush()
-
+    print('connection successful')
+    
+    print('data')
     data = stdout.read().splitlines()
     for line in data:
         x = line.decode()

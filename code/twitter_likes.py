@@ -82,7 +82,7 @@ def getLikesCount(screen_name):
 def getLikes(screen_name):
 	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
 		for status in page:
-			likes.append((screen_name,status.user.screen_name))
+			likes.append((screen_name,status.user.screen_name,status.created_at))
 
 
 def readData(key):
@@ -105,7 +105,9 @@ if __name__ == '__main__':
 	#temp = ["MattGlantz","elonmusk","nawalsanchit"]
 	#for user in temp:
 	for user in users.iterrows():
+		print(user)
 		getLikesCount(user)
 
+	print("COMPLETE")
 	total.to_csv('output1.csv')
 
