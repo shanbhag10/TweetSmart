@@ -1,6 +1,7 @@
 import tweepy
 #import csv
-#import pandas as pd
+import boto3
+import pandas as pd
 #import heapq 
 
 # Twitter API credentials
@@ -16,8 +17,7 @@ api = tweepy.API(auth)
 
 likes = []
 d = {}
-d['name'] = {}
-d['tweet'] = {}
+total = pd.DataFrame([],columns=['Poster','Likes_count','Liker'])
 
 
 def get_all_tweets(screen_name):
@@ -50,27 +50,33 @@ def getFavs(screen_name):
 
 	   #id,text,screen_name
 
-def LikesCountSorted(screen_name):
-	max = 0
-	name = ""
+def getLikesCount(screen_name):
+	global total
 	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
 		for status in page:
-			if status.user.screen_name in d['name']:
-				d['name'][status.user.screen_name]+=1
+			if status.user.screen_name in d:
+				d[status.user.screen_name]+=1
 
 				#if d['name'][status.user.screen_name] > max:
 				#	name = status.user.screen_name
 				#	max = d['name'][status.user.screen_name]
 			#d['tweet'].append(status.text)
 			else:
-				d['name'][status.user.screen_name]=1
+				d[status.user.screen_name]=1
 
-	#df = pd.DataFrame(d,columns = ['name','tweet'])
+
+	df = pd.DataFrame(list(d.items()),columns=['Poster','Likes_count'])
 	#df_count = pd.DataFrame.from_dict(d['name'])
+	length = len(df['Poster'])
+
+
+	df['Liker'] = pd.Series([screen_name]*length, index=df.index)
+	#print(df)
+	total = total.append(df, ignore_index=True)
 	#df.to_csv('mattGlanz.csv')
-	sorted_by_value = sorted(d['name'].items(), key=lambda kv: kv[1])
-	sorted_by_value.reverse()
-	print(sorted_by_value)
+	#sorted_by_value = sorted(d['name'].items(), key=lambda kv: kv[1])
+	#sorted_by_value.reverse()
+	#print(sorted_by_value)
 
 
 def getLikes(screen_name):
@@ -79,9 +85,27 @@ def getLikes(screen_name):
 			likes.append((screen_name,status.user.screen_name))
 
 
+def readData(key):
+	
+	client = boto3.client('s3') 
+
+	resource = boto3.resource('s3') 
+	my_bucket = resource.Bucket('users10k') 
+
+	obj = client.get_object(Bucket='users10k', Key=key)	
+	users = pd.read_csv(obj['Body'])
+	
+	return users
+
+
 if __name__ == '__main__':
 	#get_all_tweets("nawalsanchit")
-	getLikes("MattGlantz")
-	print(likes)
+	users = readData('ShardedData/1.txt')
+	
+	#temp = ["MattGlantz","elonmusk","nawalsanchit"]
+	#for user in temp:
+	for user in users.iterrows():
+		getLikesCount(user)
 
+	total.to_csv('output1.csv')
 
