@@ -28,5 +28,5 @@ for key, value in input.items():
 csv_dict = pd.DataFrame.from_dict(followList, orient="index")
 csv_dict.to_csv('file1.csv', header=False)
 
-new_data = pd.read_csv('file1.csv', header=None)
+new_data = pd.read_csv('followerList.csv', header=None)
 # print(new_data)
