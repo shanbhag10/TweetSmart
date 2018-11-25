@@ -1,7 +1,6 @@
 import pandas as pd
 import itertools
 import collections
-# import pprint
 
 df = pd.read_csv('Test1.csv')
 followList = dict()
@@ -24,6 +23,10 @@ for key, value in input.items():
       followList[poster].append(key)
     else:
       followList[poster] = [key]
-        
-# pprint.pprint(followList)
-# pprint.pprint(input)    
+
+# Write to csv
+csv_dict = pd.DataFrame.from_dict(followList, orient="index")
+csv_dict.to_csv('file1.csv', header=False)
+
+new_data = pd.read_csv('file1.csv', header=None)
+# print(new_data)
