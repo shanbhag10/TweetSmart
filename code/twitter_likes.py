@@ -102,7 +102,7 @@ if __name__ == '__main__':
 	#get_all_tweets("nawalsanchit")
 	users = readData('ShardedData/1.txt')
 	
-	#temp = ["MattGlantz","elonmusk","nawalsanchit"]
+	#temp = ["nawalsanchit","elonmusk","ShabeRaven"]
 	#for user in temp:
 	for user in users.iterrows():
 		print(user)
