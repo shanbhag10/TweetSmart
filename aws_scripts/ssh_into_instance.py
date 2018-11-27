@@ -1,33 +1,4 @@
-# Method 1
-
-'''import boto3
-import botocore
-import paramiko
-
-key = paramiko.RSAKey.from_private_key_file("/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/keypairAWS/tweetSmart.pem")
-client = paramiko.SSHClient()
-client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-
-# Connect/ssh to an instance
-try:
-    # Here 'ubuntu' is user name and 'instance_ip' is public IP of EC2
-    client.connect(hostname="13.58.134.75", username="ubuntu", pkey=key)
-
-    # Execute a command(cmd) after connecting/ssh to an instance
-    stdin, stdout, stderr = client.exec_command("git clone https://github.ncsu.edu/sshanbh2/TweetSmart.git")
-    print(stdout.read())
-
-    # close the client connection once the job is done
-    client.close()
-    break
-
-
-
-except Exception:
-    print("Error")'''
-
-
-# Method 2
+#!/usr/bin/env python3
 
 import boto3
 import botocore
@@ -46,6 +17,7 @@ try:
     
     print('Starting ssh connection')
     ssh.connect('ec2-18-218-205-96.us-east-2.compute.amazonaws.com',username='ubuntu',pkey=privkey)
+    print('Connected')
     stdin, stdout, stderr = ssh.exec_command('cd TweetSmart/code && python3 twitter_likes.py')
     stdin.flush()
 
@@ -100,5 +72,34 @@ for line in data:
 ssh.close()'''
 
 
+# Method 1
 
+'''import boto3
+import botocore
+import paramiko
+
+key = paramiko.RSAKey.from_private_key_file("/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/keypairAWS/tweetSmart.pem")
+client = paramiko.SSHClient()
+client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
+# Connect/ssh to an instance
+try:
+    # Here 'ubuntu' is user name and 'instance_ip' is public IP of EC2
+    client.connect(hostname="13.58.134.75", username="ubuntu", pkey=key)
+
+    # Execute a command(cmd) after connecting/ssh to an instance
+    stdin, stdout, stderr = client.exec_command("git clone https://github.ncsu.edu/sshanbh2/TweetSmart.git")
+    print(stdout.read())
+
+    # close the client connection once the job is done
+    client.close()
+    break
+
+
+
+except Exception:
+    print("Error")'''
+
+
+# Method 2
 
