@@ -16,9 +16,9 @@ try:
     privkey = paramiko.RSAKey.from_private_key_file(pem_addr)
     
     print('Starting ssh connection')
-    ssh.connect('ec2-18-218-205-96.us-east-2.compute.amazonaws.com',username='ubuntu',pkey=privkey)
+    ssh.connect('ec2-3-16-156-190.us-east-2.compute.amazonaws.com',username='ubuntu',pkey=privkey)
     print('Connected')
-    stdin, stdout, stderr = ssh.exec_command('cd TweetSmart/code && python3 twitter_likes.py')
+    stdin, stdout, stderr = ssh.exec_command('cd TweetSmart/code/ && python3 twitter_likes.py')
     stdin.flush()
 
     data = stdout.read().splitlines()
