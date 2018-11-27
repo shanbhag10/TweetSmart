@@ -4,11 +4,18 @@ import boto3
 import botocore
 #import boto
 import paramiko
+import pandas as pd
+
+instances = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/instances.csv')
+print(instances)
 
 user_name='ubuntu'
-instance_id='i-0defd071031a578c8'
+instance_id=instances['0'][0]
 pem_addr='/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/test/NEWKP.pem' 
 aws_region='us-east-2'
+public_dns=instances['1'][0]
+path = instances['3'][0]
+print(public_dns)
 
 try:
     ssh = paramiko.SSHClient()
@@ -16,9 +23,9 @@ try:
     privkey = paramiko.RSAKey.from_private_key_file(pem_addr)
     
     print('Starting ssh connection')
-    ssh.connect('ec2-3-16-156-190.us-east-2.compute.amazonaws.com',username='ubuntu',pkey=privkey)
+    ssh.connect(public_dns,username=user_name,pkey=privkey)
     print('Connected')
-    stdin, stdout, stderr = ssh.exec_command('cd TweetSmart/code/ && python3 twitter_likes.py')
+    stdin, stdout, stderr = ssh.exec_command('python3 TweetSmart/code/twitter_likes.py '+path)
     stdin.flush()
 
     data = stdout.read().splitlines()
