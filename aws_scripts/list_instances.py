@@ -7,7 +7,7 @@ instance_list = []
 inputfile = 1
 for instance in ec2.instances.all():
     #print(instance.id, instance.state)
-    path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard/'+str(inputfile)+'.txt'
+    path = '/home/ubuntu/TweetSmart/data/shard/'+str(inputfile)+'.txt'
     instance_list.append((instance.id,instance.public_dns_name,instance.state,path))
     inputfile+=1
     

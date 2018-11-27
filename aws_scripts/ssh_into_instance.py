@@ -7,8 +7,6 @@ import paramiko
 import pandas as pd
 
 instances = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/instances.csv')
-print(instances)
-
 user_name='ubuntu'
 instance_id=instances['0'][0]
 pem_addr='/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/test/NEWKP.pem' 
