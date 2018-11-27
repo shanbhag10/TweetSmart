@@ -2,18 +2,19 @@
 
 import boto3
 import botocore
+import sys
 #import boto
 import paramiko
 import pandas as pd
 
 instances = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/instances.csv')
 user_name='ubuntu'
-instance_id=instances['0'][0]
+index = int(sys.argv[1])
+instance_id=instances['0'][index]
 pem_addr='/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/test/NEWKP.pem' 
 aws_region='us-east-2'
-public_dns=instances['1'][0]
-path = instances['3'][0]
-print(public_dns)
+public_dns=instances['1'][index]
+path = instances['3'][index]
 
 try:
     ssh = paramiko.SSHClient()

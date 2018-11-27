@@ -53,6 +53,7 @@ def getFavs(screen_name):
 
 def getLikesCount(screen_name):
 	global total
+	print(screen_name)
 	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
 		for status in page:
 			if status.user.screen_name in d:
@@ -74,6 +75,7 @@ def getLikesCount(screen_name):
 	df['Liker'] = pd.Series([screen_name]*length, index=df.index)
 	#print(df)
 	total = total.append(df, ignore_index=True)
+
 	#df.to_csv('mattGlanz.csv')
 	#sorted_by_value = sorted(d['name'].items(), key=lambda kv: kv[1])
 	#sorted_by_value.reverse()
