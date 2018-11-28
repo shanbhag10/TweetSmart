@@ -4,7 +4,7 @@ import pandas as pd
 
 ec2 = boto3.resource('ec2')
 instance_list = []
-inputfile = 1
+inputfile = 0
 for instance in ec2.instances.all():
     #print(instance.id, instance.state)
     path = '/home/ubuntu/TweetSmart/data/shard/'+str(inputfile)+'.txt'

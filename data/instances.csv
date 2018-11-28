@@ -1,3 +1,3 @@
 ,0,1,2,3
-0,i-0defd071031a578c8,ec2-3-16-156-190.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/1.txt
-1,i-0f65fc9149f7234ba,ec2-3-16-187-139.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/2.txt
+0,i-0defd071031a578c8,ec2-3-16-156-190.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/0.txt
+1,i-0f65fc9149f7234ba,ec2-3-16-187-139.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/1.txt

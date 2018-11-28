@@ -15,6 +15,8 @@ pem_addr='/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/test/NEWKP.pem'
 aws_region='us-east-2'
 public_dns=instances['1'][index]
 path = instances['3'][index]
+command = 'python3 TweetSmart/code/twitter_likes.py '+path
+print(command)
 
 try:
     ssh = paramiko.SSHClient()
