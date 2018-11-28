@@ -60,7 +60,6 @@ def getFavs(screen_name):
 	   #id,text,screen_name
 
 def getLikesCount(screen_name,path):
-
 	global total
 	print("Username: ",screen_name)
 	for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
@@ -69,7 +68,8 @@ def getLikesCount(screen_name,path):
 				d[status.user.screen_name]+=1
 			else:
 				d[status.user.screen_name]=1
-
+			if (api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining']) == 0:
+				return
 
 	df = pd.DataFrame(list(d.items()),columns=['Poster','Likes_count'])
 	#df_count = pd.DataFrame.from_dict(d['name'])
@@ -77,7 +77,8 @@ def getLikesCount(screen_name,path):
 
 
 	df['Liker'] = pd.Series([screen_name]*length, index=df.index)
-	df.to_csv(path+screen_name+'.csv')
+	op = path + "/" + screen_name.strip() +".csv"
+	df.to_csv(op)
 	#print(df)
 	total = total.append(df, ignore_index=True)
 
@@ -105,13 +106,13 @@ if __name__ == '__main__':
 	access_secret = ['tvxnYaWGgTaL1cwDF0QAGBKkeBvqYBSEgzbM9GwsUqkIX','RKFgSwp6BZ05KTvJfVo6p4M9cwA8u6OJOJ5qWPEKKG3wq','tSkrl2rGff7wzZWhF4OsQYx8FZYG40I5BvNOsTqSzAZjF']
 
 # Authentication
-	auth = tweepy.OAuthHandler(consumer_key[0], consumer_secret[0])
-	auth.set_access_token(access_key[0], access_secret[0])
+	i = 0
+	auth = tweepy.OAuthHandler(consumer_key[i], consumer_secret[i])
+	auth.set_access_token(access_key[i], access_secret[i])
 	api = tweepy.API(auth)
 
 	file = open(sys.argv[1]) 
 	users = file.readlines()
-	i = 0
 	count = 0
 	#temp = ["nawalsanchit","elonmusk","ShabeRaven"]
 	#if api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining'] == 0:
@@ -122,7 +123,7 @@ if __name__ == '__main__':
 		getLikesCount(user,sys.argv[2])
 		count+=1
 		print("Count : ",count)
-		if (api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining']) == 75:
+		if (api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining']) == 0:
 			i+=1
 			if i == len(consumer_key):
 				total.to_csv('output_test.csv')

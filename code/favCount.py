@@ -13,11 +13,20 @@ def get_fav_count():
 		auth = tweepy.OAuthHandler(consumer_key[i], consumer_secret[i])
 		auth.set_access_token(access_key[i], access_secret[i])
 		api = tweepy.API(auth)
-		if (api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining']) == 0:
-			print('yess')
+		print(api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining'])
+			
+
+def temp(screen_name,path):
+	op = path + "/" + screen_name.strip() +".csv"
+	print(op)
+
 
 if __name__ == '__main__':
 	get_fav_count()
+	file = open('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard20/0.txt') 
+	users = file.readlines()
+	for user in users:
+		temp(user,'/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/tp')
 
 
 
