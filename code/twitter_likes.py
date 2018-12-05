@@ -56,7 +56,7 @@ def getFavs(screen_name):
 
 	   #id,text,screen_name
 
-def getLikesCount(screen_name):
+def getLikesCount(screen_name,op_path):
 	try:	
 		global total
 		d = {}
@@ -65,7 +65,8 @@ def getLikesCount(screen_name):
 
 		#for page in tweepy.Cursor(api.favorites,id=screen_name,wait_on_rate_limit=True, count=200).pages(200):
 		#	for status in page:
-		path1 = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/output/"+screen_name+".csv"
+		#/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/output/
+		path1 = op_path+screen_name+".csv"
 
 
 		if os.path.isfile(path1):
@@ -97,7 +98,7 @@ def getLikesCount(screen_name):
 
 		df['Liker'] = pd.Series([screen_name]*length, index=df.index)
 
-		op = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/output/"+screen_name.strip()+".csv"
+		op = op_path+screen_name.strip()+".csv"
 		df.to_csv(op)
 			#print(df)
 		total = total.append(df, ignore_index=True)
@@ -147,6 +148,7 @@ if __name__ == '__main__':
 	number = sys.argv[3].strip()
 	#print("Enter path for output (total): ")
 	total_path = sys.argv[4].strip()
+	op_path = sys.argv[5].strip()
 	path = path+number+'.txt'
 	file = open(path) 
 	users = file.readlines()
@@ -170,7 +172,7 @@ if __name__ == '__main__':
 			api = tweepy.API(auth)
 
 		count+=1
-		getLikesCount(user)
+		getLikesCount(user,op_path)
 		#print(api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining'])
 		#getFavs(user)
 		#for user in users.iterrows():
