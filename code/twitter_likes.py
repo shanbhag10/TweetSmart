@@ -129,16 +129,25 @@ if __name__ == '__main__':
 			'''
 # Authentication
 
-	keys = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/twitter_keys.csv')
+	#print("Enter path for Keys : ")
+	#/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/twitter_keys.csv
+	keys = pd.read_csv(sys.argv[1].strip())
 
 	i = 0
 	
 	auth = tweepy.OAuthHandler(keys['consumer'][i], keys['consumer_s'][i])
 	auth.set_access_token(keys['access'][i], keys['access_s'][i])
 	api = tweepy.API(auth)
-#	path = sys.argv[1].strip()
-	number = sys.argv[1]
-	path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard750/'+number+'.txt'
+	path = sys.argv[2].strip()
+	#print("Enter path for Shards: ")
+	#path = raw_input().strip()
+	#'/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard750/
+	#number = sys.argv[1]
+	#print("Enter Shard Number: ")
+	number = sys.argv[3].strip()
+	#print("Enter path for output (total): ")
+	total_path = sys.argv[4].strip()
+	path = path+number+'.txt'
 	file = open(path) 
 	users = file.readlines()
 	count = 0
@@ -193,7 +202,8 @@ if __name__ == '__main__':
 									auth.set_access_token(access_key[i], access_secret[i])
 									api = tweepy.API(auth)'''
 #+path[path.rfind('/')+1:path.rfind('.')].strip()+
-	total.to_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_'+number+'.csv');
+#/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_
+	total.to_csv(total_path+number+'.csv');
 	print("COMPLETE")
 	
 	

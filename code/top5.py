@@ -3,9 +3,12 @@ import itertools
 import collections
 import sys
 
-
-number = sys.argv[1]
-path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_'+number+'.csv'
+#/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_
+path = sys.argv[1].strip()
+#/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/top5/top5_
+op_path = sys.argv[2].strip()
+number = sys.argv[3].strip()
+path = path+number+'.csv'
 df = pd.read_csv(path)
 followList = dict()
 input = dict()
@@ -31,7 +34,7 @@ for key, value in input.items():
 # Write to csv
 #df = pd.DataFrame(list(d.items()),columns=['Poster','Likes_count'])
 csv_dict = pd.DataFrame(list(followList.items()),columns=['Poster','Likers'])
-csv_dict.to_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/top5/top5_'+number+'.csv', header=False)
+csv_dict.to_csv(op_path+number+'.csv', header=False)
 
 #new_data = pd.read_csv('followerList.csv', header=None)
 # print(new_data)

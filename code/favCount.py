@@ -2,8 +2,9 @@ import tweepy
 import pandas as pd
 import os
 
-
-keys = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/twitter_keys.csv')
+path = sys.argv[1].strip()
+#'/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/twitter_keys.csv'
+keys = pd.read_csv(path)
 
 # Authentication
 
@@ -27,13 +28,6 @@ def get_fav_count():
 
 
 	print(d)
-
-
-			
-
-def temp(screen_name,path):
-	op = path + "/" + screen_name.strip() +".csv"
-	#print(op)
 
 
 if __name__ == '__main__':

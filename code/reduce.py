@@ -1,7 +1,10 @@
 import pandas as pd
 import pickle
 
-paths = open('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/input_list.txt')
+path = sys.argv[1].strip()
+op_path = sys.argv[2].strip()
+#/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/input_list.txt
+paths = open()
 d = {}
 
 
@@ -23,7 +26,8 @@ def saveDict():
 			
 
 	df = pd.DataFrame(list(d.items()),columns=['Poster','Likers'])
-	df.to_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/overallTop5.csv')
+	#'/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/overallTop5.csv
+	df.to_csv(op_path)
 
 
 
