@@ -14,14 +14,38 @@ enable smarter targeting of advertisements.
 
 ## Running Instructions
 
-1. Clone the repository and enter our code directory.   
+Note: Please change the twitter_keys.csv file with your own Twitter Developer API access tokens. Also, please change the absolute paths to the directories to your own paths. 
+
+1. **Initialize:**   
+Clone the repository and enter our code directory.   
 `git clone https://github.ncsu.edu/sshanbh2/TweetSmart.git`     
 `cd TweetSmart/code`
 
-2. In order to get a good number of random usernames (~10000) to perform our analysis on:       
+2. **Gather Usernames**    
+We need a good number of *random* usernames (~10000) to perform our analysis on: 
 Run:     
-`python3 getUserNames.py <start_username>` 
+`python3 getUserNames.py <start_username>`    
+*Start_username can be any username whose connections will give us a list of 10K users. We have used 'elonmusk' for obtaining our data.*
 
-Start_username can be any username whose connections will give us a list of 10K users. We have used 'elonmusk' for obtaining our data.
+3. **Sharding data**  
+We have made 13 shards of 750 usernames each which gave us 9750 usernames in total. We would have more shards if we have more usernames.    
+Run:    
+`python3 shard.py <shard_size>`  
+*We have used block size = 750*
 
+4. **Getting likes count (Mapper 1)**    
+We now need to get likes of each user from Twitter_Favorites_list API and counting the number of likes for each particular user.   
+Run:   
+`python3 twitter_likes.py <shard_number>`
 
+5. **Calculating Top 5 (Mapper 2):**    
+Now, we need to reverse map the likes to find out the top interests of each user. Hence, we check the top 5 likes count for each user from the output of Mapper 1 and reverse map the user to the poster so that we know that the particular user should be notified when the poster posts any content.   
+Run:   
+`python3 top5.py <shard_number>`
+
+6. **Combine (Reduce):**
+We need to combine the outputs of all shards as same poster might be present in multiple shards. This script takes care of combining results into one reduced output.   
+Run:   
+`python3 reduce.py`   
+
+Using the output of reduce.py, we can figure out who all should be notified when one particular user posts some content.
