@@ -136,7 +136,9 @@ if __name__ == '__main__':
 	auth = tweepy.OAuthHandler(keys['consumer'][i], keys['consumer_s'][i])
 	auth.set_access_token(keys['access'][i], keys['access_s'][i])
 	api = tweepy.API(auth)
-	path = sys.argv[1].strip()
+#	path = sys.argv[1].strip()
+	number = sys.argv[1]
+	path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard750/'+number+'.txt'
 	file = open(path) 
 	users = file.readlines()
 	count = 0
@@ -190,8 +192,8 @@ if __name__ == '__main__':
 									auth = tweepy.OAuthHandler(consumer_key[i], consumer_secret[i])
 									auth.set_access_token(access_key[i], access_secret[i])
 									api = tweepy.API(auth)'''
-
-	total.to_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_'+path[path.rfind('/')+1:path.rfind('.')].strip()+".csv");
+#+path[path.rfind('/')+1:path.rfind('.')].strip()+
+	total.to_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_'+number+'.csv');
 	print("COMPLETE")
 	
 	
