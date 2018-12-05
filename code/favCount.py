@@ -16,14 +16,14 @@ def get_fav_count():
 		api = tweepy.API(auth)
 		print(api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining'])
 
-	path1 = "/Users/saurabhshanbhag/Desktop/test.csv"
+	# path1 = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/total/total_1.csv"
 
-	if os.path.isfile(path1):
-		file = open(path1)
-		for line in file:
-			entry = line.split(",")
-			#print(entry[0]+" "+entry[1])
-			d[entry[1]] = entry[0]
+	# if os.path.isfile(path1):
+	# 	file = open(path1)
+	# 	for line in file:
+	# 		entry = line.split(",")
+	# 		print(entry[1]+" "+entry[2])
+			#d[entry[0]] = entry[1]
 
 
 	print(d)

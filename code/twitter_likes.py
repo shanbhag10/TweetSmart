@@ -1,5 +1,6 @@
 import tweepy
 #import csv
+import ast
 import os
 import random
 import boto3
@@ -66,12 +67,16 @@ def getLikesCount(screen_name):
 		#	for status in page:
 		path1 = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/output/"+screen_name+".csv"
 
+
 		if os.path.isfile(path1):
 			file = open(path1)
 			for line in file:
 				entry = line.split(",")
+				if entry[2] != 'Likes_count':
+					d[entry[1]] = int(entry[2])
+
 			#print(entry[0]+" "+entry[1])
-				d[entry[1]] = entry[2]
+				
 
 
 		likes = api.favorites(screen_name = screen_name)
@@ -127,6 +132,7 @@ if __name__ == '__main__':
 	keys = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/twitter_keys.csv')
 
 	i = 0
+	
 	auth = tweepy.OAuthHandler(keys['consumer'][i], keys['consumer_s'][i])
 	auth.set_access_token(keys['access'][i], keys['access_s'][i])
 	api = tweepy.API(auth)
@@ -137,13 +143,15 @@ if __name__ == '__main__':
 	#temp = ["nawalsanchit","elonmusk","ShabeRaven"]
 	#if api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining'] == 0:
 	index = 0
+
 	for user in users:
 
-		print("Count : ",count)
+		print("API number: ",i," ; Count : ",count)
 
 		if count == 75:
 			count=0
 			i+=1
+			print("index : ",i)
 			if i == 10:
 				break
 			auth = tweepy.OAuthHandler(keys['consumer'][i], keys['consumer_s'][i])
