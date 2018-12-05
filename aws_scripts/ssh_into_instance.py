@@ -26,7 +26,7 @@ try:
     print('Starting ssh connection')
     ssh.connect(public_dns,username=user_name,pkey=privkey)
     print('Connected')
-    stdin, stdout, stderr = ssh.exec_command('python3 TweetSmart/code/twitter_likes.py '+path)
+    stdin, stdout, stderr = ssh.exec_command('python3 TweetSmart/code/twitter_likes.py'+path)
     stdin.flush()
 
     data = stdout.read().splitlines()

@@ -1,32 +1,47 @@
 import tweepy
+import pandas as pd
+import os
 
-# Twitter API credentials
-consumer_key = ['IFPYrIpyKNqt8qe7GbQvw8NzQ','mgf6yCpEQI7BBI1AXMP0F1qZA','ujn2X5xT7Q4LyVCCJfgyRXHqG']
-consumer_secret = ['mo2eR5eoGLu595DaSKszFanUWcvYpTHKRIaRyvGnYHA4jUXOKi','2aYhS9197XivXUhsFpILSM1MJFLIQi6FNUQvNO2Nw51lLFLPfx','nLUy8BlHwB3kWvLToJut286iZl2IQSY52H0znGozwbFwKkOWtk']
-access_key = ['779885459929337856-y0LNiqvm4EsFWDguaLW712p8e9c5MdH','930245742412877824-yh94Uu5E6yihujnWa2rzWnCU4bnosZK','1067674130856714241-tLRIGgNuiBc1Og04byzfk2wBHACnmh']
-access_secret = ['tvxnYaWGgTaL1cwDF0QAGBKkeBvqYBSEgzbM9GwsUqkIX','RKFgSwp6BZ05KTvJfVo6p4M9cwA8u6OJOJ5qWPEKKG3wq','tSkrl2rGff7wzZWhF4OsQYx8FZYG40I5BvNOsTqSzAZjF']
+
+keys = pd.read_csv('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/twitter_keys.csv')
 
 # Authentication
 
 def get_fav_count():
-	for i in range(len(consumer_key)):
-		auth = tweepy.OAuthHandler(consumer_key[i], consumer_secret[i])
-		auth.set_access_token(access_key[i], access_secret[i])
+	d = {}
+
+	for i in range(len(keys['consumer'])):
+		auth = tweepy.OAuthHandler(keys['consumer'][i], keys['consumer_s'][i])
+		auth.set_access_token(keys['access'][i], keys['access_s'][i])
 		api = tweepy.API(auth)
 		print(api.rate_limit_status()['resources']['favorites']['/favorites/list']['remaining'])
+
+	path1 = "/Users/saurabhshanbhag/Desktop/test.csv"
+
+	if os.path.isfile(path1):
+		file = open(path1)
+		for line in file:
+			entry = line.split(",")
+			#print(entry[0]+" "+entry[1])
+			d[entry[1]] = entry[0]
+
+
+	print(d)
+
+
 			
 
 def temp(screen_name,path):
 	op = path + "/" + screen_name.strip() +".csv"
-	print(op)
+	#print(op)
 
 
 if __name__ == '__main__':
 	get_fav_count()
-	file = open('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard20/0.txt') 
-	users = file.readlines()
-	for user in users:
-		temp(user,'/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/tp')
+	#file = open('/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard20/0.txt') 
+	#users = file.readlines()
+	#for user in users:
+	#	temp(user,'/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/tp')
 
 
 

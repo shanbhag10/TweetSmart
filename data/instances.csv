@@ -1,3 +1,11 @@
 ,0,1,2,3
-0,i-0defd071031a578c8,ec2-3-16-156-190.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/0.txt
-1,i-0f65fc9149f7234ba,ec2-3-16-187-139.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/1.txt
+0,i-0e2e5b21a85643fb1,ec2-3-16-148-224.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/0.txt
+1,i-08496713694511ab3,ec2-3-16-107-219.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/1.txt
+2,i-0defd071031a578c8,,"{'Code': 80, 'Name': 'stopped'}",/home/ubuntu/TweetSmart/data/shard/2.txt
+3,i-05d258895ff2f93ca,ec2-52-14-85-178.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/3.txt
+4,i-095fed1bae6e6e844,ec2-18-220-179-170.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/4.txt
+5,i-0f65fc9149f7234ba,,"{'Code': 80, 'Name': 'stopped'}",/home/ubuntu/TweetSmart/data/shard/5.txt
+6,i-076dbabf30a36be74,ec2-3-16-163-194.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/6.txt
+7,i-0ed58c780bd627346,ec2-18-224-61-209.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/7.txt
+8,i-08ae7f79cf14e2d37,ec2-18-188-52-160.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/8.txt
+9,i-0403d7e0642ed123a,ec2-18-219-208-222.us-east-2.compute.amazonaws.com,"{'Code': 16, 'Name': 'running'}",/home/ubuntu/TweetSmart/data/shard/9.txt
