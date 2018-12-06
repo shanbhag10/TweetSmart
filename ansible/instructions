@@ -1,0 +1,3 @@
+1. Create / Copy the key pair to TweetSmart/ansible/keys/NEWKP.pem
+2. Make sure ansible is installed.
+3. Execute ansible-playbook run.yml -i inventory
