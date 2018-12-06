@@ -27,8 +27,8 @@ for key, value in input.items():
 for key, value in input.items():
 	for poster, likes in value:
 		if poster not in followList.keys():
-			followList[poster] = []
-		followList[poster].append(key)
+			followList[poster.strip()] = []
+		followList[poster].append(key.strip())
 		
 
 # Write to csv

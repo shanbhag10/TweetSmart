@@ -17,7 +17,8 @@ def saveDict():
 			entry[2] = entry[2].replace("[","")
 			entry[2] = entry[2].replace("'","")
 			entry[2] = entry[2].replace("]","")
-
+			entry[2] = entry[2].replace(" ","")
+			entry[2] = entry[2].strip()
 			entry[2] = entry[2].split(",")
 			
 			if entry[1] not in d:
