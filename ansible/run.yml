@@ -1,0 +1,17 @@
+---
+- hosts: py3-hosts
+  tasks:
+  - name: Copy Key File
+    copy:
+      src: keys/NEWKP.pem
+      dest: TweetSmart/ansible/keys/NEWKP.pem
+      mode: 600
+  - name: Run code
+    command: python3 TweetSmart/code/top5.py
+- hosts: py3-dest
+  tasks:
+  - name: Copy results
+    synchronize: src=/home/ubuntu/TweetSmart/data/total/ dest=/home/ubuntu/TweetSmart/data/remotecopy
+    delegate_to: "{{item}}"
+    loop: "{{groups['py3-dest']}}"
+
