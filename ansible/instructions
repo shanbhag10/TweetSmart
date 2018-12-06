@@ -1,3 +1,4 @@
 1. Create / Copy the key pair to TweetSmart/ansible/keys/NEWKP.pem
 2. Make sure ansible is installed.
+3. Update inventory file with hosts as "py3-hosts" being all hosts running map code and "py3-dest" being the reduce node
 3. Execute ansible-playbook run.yml -i inventory
