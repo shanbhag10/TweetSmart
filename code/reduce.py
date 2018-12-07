@@ -1,10 +1,11 @@
 import pandas as pd
 import pickle
+import sys
 
 path = sys.argv[1].strip()
 op_path = sys.argv[2].strip()
 #/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/input_list.txt
-paths = open()
+paths = open(path)
 d = {}
 
 
@@ -17,7 +18,7 @@ def saveDict():
 			entry[2] = entry[2].replace("[","")
 			entry[2] = entry[2].replace("'","")
 			entry[2] = entry[2].replace("]","")
-			entry[2] = entry[2].replace(" ","")
+
 			entry[2] = entry[2].strip()
 			entry[2] = entry[2].split(",")
 			

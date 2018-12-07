@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+		.center {
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+}
+
+input[type=submit] {
+  background-color: #11A0EA;
+  color: white;
+  padding: 12px 20px 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  float: center;
+  margin-top: 20px;
+}
+
+input[type=submit]:hover {
+  background-color: #08557D;
+}
+
+
+</style>
+		<h1 class="center">Welcome to <font family='verdana' color='#11A0EA'>TweetSmart.</font></h1>
+	</head>
+	<body class="center">
+		<h3 class="center"> Who posted??? </h3>
+		<form class="center" method="POST" action="/send"> 
+			<div>
+				@<input type="text" name="username">
+			</div>
+			<input class="button button1" type="submit" value="Check True Followers">
+		</form>
+
+		<div>
+			<h3 class="center"> Username : {{username}} </h1>
+			<h3 class="center"> Notify the Following: </h1>
+			<ol class="center">
+  			{% for thing in followers %}
+  			<li> {{ thing }}  </li>
+  			{% endfor %}
+			</ol>
+		<div>
+	</body>
+</html>

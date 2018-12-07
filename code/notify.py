@@ -4,7 +4,8 @@ import pandas as pd
 #/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/overallTop5.csv
 
 path = sys.argv[1].strip()
-poster = sys.argv[2].strip()
+print("Enter Username: ")
+poster = raw_input()
 
 file = pd.read_csv(path.strip())
 for index, entry in file.iterrows():
