@@ -17,7 +17,7 @@ def send():
 	return render_template('notif.html')
 
 def notify(username):
-	path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/overallTop5.csv'
+	path = '/home/ubuntu/TweetSmart/data/overallTop5.csv'
 	file = pd.read_csv(path.strip())
 	for index, entry in file.iterrows():
 		if entry[1].lower() == username.lower():
