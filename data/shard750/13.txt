@@ -746,5 +746,4 @@ forceninemedia
 FaZeMik
 SparkleOps
 TheTreyRoberts
-Shanbhagsaurabh
 FCBarcelona

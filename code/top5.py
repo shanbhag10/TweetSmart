@@ -10,13 +10,13 @@ op_path = sys.argv[2].strip()
 number = sys.argv[3].strip()
 path = path+number+'.csv'
 df = pd.read_csv(path)
-followList = dict()
-input = dict()
+followList = {}
+input = {}
 
 # Read CSV in dict of dict
 for index, row in df.iterrows():
 	if row['Liker'] not in input.keys():
-		input[row['Liker']]=dict()
+		input[row['Liker']]={}
 	input[row['Liker']][row['Poster']]=row['Likes_count']
 
 # Get top 5 elements from original list
