@@ -4,8 +4,9 @@ pip3 install boto3
 pip3 install pandas
 pip3 install tweepy
 pip3 install flask
+pip3 install ansible
 pip3 install selenium
-cd /tmp
+cd /tmp/
 wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
 sudo vim /etc/apt/sources.list
 
