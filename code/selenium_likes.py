@@ -120,11 +120,14 @@ def get_likes_selenium(chromepath,name,op_path):
             
 
 if __name__ == '__main__':
-    path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard750/'
+    #path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/shard750/'
+    path = '/home/ubuntu/TweetSmart/data/shard750/'
     number = sys.argv[1]
-    chromePath = "/Users/saurabhshanbhag/Desktop/chromedriver"
-    op_path = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/selenium_data/"
-    total_path = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/selenium_total/"
+    #chromePath = "/Users/saurabhshanbhag/Desktop/chromedriver"
+    chromePath = "/usr/bin/chromedriver"
+    op_path = "/home/ubuntu/TweetSmart/selenium_data/"
+    #op_path = "/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/selenium_data/"
+    total_path = "/home/ubuntu/TweetSmart/selenium_total/"
 
     path = path+number+'.txt'
     file = open(path) 
