@@ -36,8 +36,8 @@ input[type=submit]:hover {
 		</form>
 
 		<div>
-			<h3 class="center"> Username : {{username}} </h1>
-			<h3 class="center"> Notify the Following: </h1>
+			<h3 class="center"> Username : @{{username}} </h1>
+			<h3 class="center"> Notify the Following {{length}} users: </h1>
 			<ol class="center">
   			{% for thing in followers %}
   			<li> {{ thing }}  </li>

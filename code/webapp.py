@@ -8,13 +8,14 @@ app = Flask(__name__)
 
 @app.route('/send',methods=['GET','POST'])
 def send():
-	
+	length=0
 	if request.method == 'POST':
 		username = request.form['username']
 		followers = notify(username)
+		length = len(followers)
 		if len(followers) != 0:
-			return render_template('notif.html',username=username,followers=followers)
-	return render_template('notif.html')
+			return render_template('notif.html',username=username,followers=followers,length=length)
+	return render_template('notif.html',username=username,length=length)
 
 def notify(username):
 	path = '/Users/saurabhshanbhag/Desktop/PROJECTS/TweetSmart/Git/TweetSmart/data/overallTop5.csv'
