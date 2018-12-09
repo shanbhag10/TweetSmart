@@ -1,4 +1,5 @@
 import os
+import sys
 
 csv_header = ',Poster,Likes_count,Liker'
 num = sys.argv[1]
