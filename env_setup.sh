@@ -8,7 +8,7 @@ pip3 install ansible
 pip3 install selenium
 cd /tmp/
 wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-sudo vim /etc/apt/sources.list
+sudo sed -i '$ a deb http://dl.google.com/linux/chrome/deb/ stable main' /etc/apt/sources.list
 sudo apt-get update
 sudo apt-get -y install google-chrome-stable
 sudo apt-get -y install xvfb
