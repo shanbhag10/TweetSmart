@@ -8,5 +8,13 @@ pip3 install ansible
 pip3 install selenium
 cd /tmp/
 wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
-sudo vim /etc/apt/sources.list
-
+sudo sed -i '$ a deb http://dl.google.com/linux/chrome/deb/ stable main' /etc/apt/sources.list
+sudo apt-get -y install google-chrome-stable
+sudo apt-get -y install xvfb
+sudo mv /usr/bin/google-chrome-stable /usr/bin/google-chrome
+wget https://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip
+sudo apt-get -y install unzip
+unzip chromedriver_linux64.zip
+sudo mv chromedriver /usr/bin/chromedriver
+mkdir /home/ubuntu/TweetSmart/selenium_data
+mkdir /home/ubuntu/TweetSmart/selenium_total
